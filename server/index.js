@@ -108,7 +108,12 @@ reason은 한국어로 한 문장만 작성한다.
   }
 });
 
-// Start Server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+// Start Server (only for local development)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+  });
+}
+
+// Export the app for Vercel
+module.exports = app;
